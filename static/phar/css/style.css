@@ -1,0 +1,106 @@
+body{
+background:#000111;
+color:white;
+}
+header{
+width:100%;
+height:50px;
+
+}
+.nav{
+text-decoration:none;
+}
+.u{
+list-style-type:none;
+text-decoration:none;
+
+}
+.u li{
+padding:10px;
+float:left;
+width:10%;
+}
+
+li:hover {
+
+color:#DD1111;
+}
+/*
+.ani{
+width:50%;
+height:200px;
+
+position:absolute;
+background:white;
+top:30%;
+left:24%;
+border:1px solid white;
+transition:0.3s;
+display:block;
+animation:type 3s;
+}
+.ani p{
+letter-spacing:2px;
+color:#000111;
+text-shadow:1px 3px 1px solid blue;
+font-size:22px;
+position:relative;
+top:50px;
+font-style:italic;
+}
+@keyframes type{
+from{opacity:1;}
+to{opacity:0;}
+}
+*/
+li a{
+text-decoration:none;
+color:#fff;
+}
+table{
+width:100%;
+border-collapse:collapse;
+
+}
+table thead tr, th{
+border:1px solid white;
+background:black;
+
+padding:5px;
+}
+table td{
+padding:10px;
+border:1px solid white;
+padding:5px;
+}
+tr:nth-child(even){
+background:grey;
+}
+.tab label{
+width:200px;
+height:30px;
+border:1px solid white;
+padding:10px;
+background:white;
+font-size:20px;
+}
+#l{
+width:200px;
+height:30px;
+position:relative;
+}
+#g{
+width:100px;
+height:40px;
+background:green;
+color:white;
+
+}
+#z{
+width:100px;
+height:40px;
+background:blue;
+float:right;
+cursor:pointer;	
+color:white;
+}

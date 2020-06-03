@@ -1,0 +1,46 @@
+{% extends 'base.html'%}
+
+{%block content%}
+{%if user.is_authenticated%}
+<header>
+<nav class="nav">
+<ul class="u">
+<li><a href="/dashboard/">Home</a></li>
+<li><a href="/dashboard/add/">Add</a></li>
+<li><a href="/dashboard/edit/">Edit</a></li>
+<li><a href="/accounts/logout">{{user.username}}</a></li>
+</ul>
+</nav>
+</header>
+<hr>
+{%for error in messages%}
+	<p>{{error}}</p>
+{%endfor%}	
+<div class="add">
+<table>
+<caption>PharmartZ Store</caption>	
+<tr>
+<th>MedicineName</th>
+<th>MedicineComposition</th>
+<th>MedicineDescription</th>
+<th>MedicineQuantity</th>
+<th>MedicineEachCost</th>
+<th>EditData</th>
+
+</tr>
+{%for data in data%}
+<tr>
+<td>{{data.MedName}}</td>
+<td>{{data.MedComp}}</td>
+<td>{{data.MedDesc}}</td>
+<td>{{data.MedTotal}}</td>
+<td>{{data.Med1Cost}}</td>
+<td><button><a href="/dashboard/update/{{data.id}}">Edit</a></button><button><a href="/dashboard/delete/{{data.id}}">delete</a></button></td>
+</tr>
+{%endfor%}
+
+</table>
+</div>
+{%endif%}
+{%endblock %}
+

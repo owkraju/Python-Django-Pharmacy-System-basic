@@ -1,0 +1,99 @@
+{% extends 'base.html'%}
+
+{%block content%}
+{%if user.is_authenticated%}
+<script>
+$(document).ready(function(){
+	var row='';
+	$("#g").click(function (){
+			let f=$("#l").val();
+			
+			$.ajax({
+				type:'GET',
+				url:"tablet",
+				dataType:'json',
+				data: {"tablet": f},			
+				success:function (data){
+						$.each(data,function (i,item){
+						
+					
+						row='<tr id="f"><td>'+item[0]['MedName']+'</td><td>'+item[0]['MedComp']+'</td><td>'+item[0]['MedDesc']+'</td><td  ><input type="text" id="b" /></td><td id="x">'+item[0]['Med1Cost']+'</td><td id="fl" title="How many*Cost Of each Medicine"></td></tr>';
+						$("#t ").append(row);
+
+					});
+				
+				},
+				error: function (response) {
+               			 console.log(response)
+            			}					
+
+			});
+	});
+	$("#j").click(function (){
+		$("#t tr:not(:first-child)").each(function()
+		{
+			var l=$(this).find("#b").val();
+			var h=$(this).find("#x").text();	
+			$(this).find("#fl").html(l*h);
+		});
+	});
+	$("#z").click(function(){
+			var to=0;
+			$("#t tr:not(:first-child)").each(function()
+			{
+				let t=$(this).find("#fl").text()
+			
+				to+=parseInt(t);
+			});
+			$("#p").html(parseInt(to));
+	});
+	
+});
+
+</script>
+<header>
+<nav class="nav">
+<ul class="u">
+<li><a href="">Home</a></li>
+<li><a href="add/">Add</a></li>
+<li><a href="edit/">Edit</a></li>
+<li><a href="../accounts/logout">{{user.username}}</a></li>
+</ul>
+</nav>
+</header>
+
+<hr>
+
+<p align="center">Welcome To Pharmartz!!!! <span id="d">{{user.username}}</span></p>
+
+<center>
+<input type="text" id="l" list="list" placeholder="search here"/>
+<br>
+<input type="submit" value="add" id="g"/>
+
+<datalist id="list">
+	{%for data in data%}
+	<option value="{{data.MedName}}">{{data.MedName}}</option>
+{%endfor%}
+</datalist>
+<br>
+<button id="z" title="Click here after completion">Total</button>
+</center>
+
+<div class="tab">
+<table id="t">
+<caption>PharmartZ Store</caption>	
+<tr>
+<th>MedicineName</th>
+<th>MedicineComposition</th>
+<th>MedicineDescription</th>
+<th>How Many</th>
+<th>MedicineEachCost</th>
+<th id="j" style="color:blue;cursor:pointer" title="How many*Cost Of each Medicine">Total</th>
+</tr>
+</table><label style="float:right;color:blue;margin-right:0px">Total:-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<span id="p"></span></label>
+</div>
+{%endif%}
+{%endblock %}
+
